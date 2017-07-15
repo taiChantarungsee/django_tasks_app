@@ -1,0 +1,64 @@
+<html>
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+
+  <div class="container" >
+  
+<div>
+    Hello! Welcome to Tai's Blog! This page is a web app that's meant to function as a
+    online taskmanager. This is an example to demonstrate my django skills.
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task Number</th>
+            <th>Task Name</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Abby</td>
+            <td>Barrett</td>
+            <td>@abbeme</td>
+            <td>
+                <button type="button" class="btn btn-primary">Primary</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Danny</td>
+            <td>Collins</td>
+            <td>@dennis</td>
+            <td>
+               <button type="button" class="btn btn-primary">Primary</button>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Clara</td>
+            <td>Ericson</td>
+            <td>@claris</td>
+            <td>
+               <button type="button" class="btn btn-primary">Primary</button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div>
+{% for task in tasks %}
+    {{ task }}
+{% endfor %}
+</div>
+
+</body>
+</html>
+
