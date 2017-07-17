@@ -1,8 +1,20 @@
 from django.shortcuts import render
 from .models import Task, User
+from .forms import TaskForm
+from django.shortcuts import redirect
 
 def task_list(request):
-	tasks = Task.objects.all()
+	tasks = Task.objects.all() # also need to add a gitignore and other files. Also integrate the forms demo project?
+	if request.method == "POST": # now add form validation
+		form = TaskForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit=False)
+			#post.author = request.user
+			#post.published_date = timezone.now()
+			post.save()
+			#return redirect('post_detail', pk=post.pk)
+	else:
+		form = TaskForm()
 	# First check is user is authenticated or not
 	#if request.user is_authenticated():
 #		user_posts = Posts.objects.get('user'=request.user.username)
@@ -15,6 +27,6 @@ def task_list(request):
 #				post = form.save(commit=False)
 #				return render(request, {'form':form})
 
-	return render(request, 'tasks/main.html', {'tasks': tasks}) 
+	return render(request, 'tasks/main.html', {'tasks': tasks, 'form': form}) #fix this!
 	#{ 'posts': user_posts}
 	# First stage. Needs refactoring. 
