@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Task, User
 from .forms import TaskForm
 from django.shortcuts import redirect
@@ -6,7 +6,9 @@ from django.shortcuts import redirect
 def task_list(request):
 	tasks = Task.objects.all() # also need to add a gitignore and other files. Also integrate the forms demo project?
 	if request.method == "POST": # now add form validation
-		form = TaskForm(request.POST)
+		task = get_object_or_404(Task, pk=pk)
+		form = TaskForm(request.POST, instance=task)
+		print ("Success!!!")
 		if form.is_valid():
 			post = form.save(commit=False)
 			#post.author = request.user
