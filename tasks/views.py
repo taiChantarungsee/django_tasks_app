@@ -3,8 +3,8 @@ from .models import Task, User
 from .forms import TaskForm
 from django.shortcuts import redirect
 
-def task_list(request):
-	tasks = Task.objects.all() # also need to add a gitignore and other files. Also integrate the forms demo project?
+def task_list(request, pk=None):
+	 # also need to add a gitignore and other files. Also integrate the forms demo project?
 	if request.method == "POST": # now add form validation
 		task = get_object_or_404(Task, pk=pk)
 		form = TaskForm(request.POST, instance=task)
@@ -17,6 +17,7 @@ def task_list(request):
 			#return redirect('post_detail', pk=post.pk)
 	else:
 		form = TaskForm()
+	tasks = Task.objects.all()
 	# First check is user is authenticated or not
 	#if request.user is_authenticated():
 #		user_posts = Posts.objects.get('user'=request.user.username)
