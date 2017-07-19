@@ -23,7 +23,8 @@ class Task(models.Model):
 	date_created = models.DateField(blank=True, null=True)
 	date_completed = models.DateField(blank=True, null=True)
 
-	
+	def save(self):
+		self.save()
 
 	def __str__(self):
 		return self.title

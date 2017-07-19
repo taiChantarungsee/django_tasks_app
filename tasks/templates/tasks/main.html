@@ -1,17 +1,6 @@
-<html>
-<head>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-</head>
-<body>
+{% extends 'tasks/base.html' %}
 
-  <div class="container" >
-  
-<div>
-    Hello! Welcome to Tai's Blog! This page is a web app that's meant to function as a
-    online taskmanager. This is an example to demonstrate my django skills.
-</div>
-
+{% block content %}
 <table class="table">
     <thead>
         <tr>
@@ -24,7 +13,7 @@
     <tbody>
         {% for task in tasks %}
         <tr>
-            <th scope="row">1</th>
+            <th scope="row">Put a template tag here</th>
             <td>{{task.title}}</td>
             <td>{{task.text}}</td>
             <td>
@@ -33,12 +22,10 @@
                 <button type="submit" class="save btn btn-default">Save</button>
                 </form>
                 <button type="button" class="btn btn-primary">Primary</button>
-                 <a class="btn btn-default" href="{% url 'main' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-default" href="{% url 'task_edit' pk=task.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
         </tr>
         {%endfor%}
     </tbody>
 </table>
-
-</body>
-</html>
+{% endblock %}

@@ -3,22 +3,10 @@ from .models import Task, User
 from .forms import TaskForm
 from django.shortcuts import redirect
 
-def task_list(request, pk=None):
+def task_list(request):
 	 # also need to add a gitignore and other files. Also integrate the forms demo project?
-	if request.method == "POST": # now add form validation
-		task = get_object_or_404(Task, pk=pk)
-		form = TaskForm(request.POST, instance=task)
-		print ("Success!!!")
-		if form.is_valid():
-			post = form.save(commit=False)
-			#post.author = request.user
-			#post.published_date = timezone.now()
-			post.save()
-			#return redirect('post_detail', pk=post.pk)
-	else:
-		form = TaskForm()
 	tasks = Task.objects.all()
-	# First check is user is authenticated or not
+	print ("!!!!!!!!!!!!!!!!!!")
 	#if request.user is_authenticated():
 #		user_posts = Posts.objects.get('user'=request.user.username)
 #		posts = { 'posts': user_posts}
@@ -30,6 +18,18 @@ def task_list(request, pk=None):
 #				post = form.save(commit=False)
 #				return render(request, {'form':form})
 
-	return render(request, 'tasks/main.html', {'tasks': tasks, 'form': form}) #fix this!
+	return render(request, 'tasks/main.html', {'tasks': tasks})
 	#{ 'posts': user_posts}
 	# First stage. Needs refactoring. 
+
+def task_edit(request, pk):
+	task = get_object_or_404(Task, pk=pk)
+	if request.method == "POST":
+		form = TaskForm(request.POST, instance=post)
+		if form.is_valid():
+			task = form.save(commit=False)
+			task.save()
+			return redirect('task_edit')
+	else:
+		form = TaskForm(instance=post)
+	return render(request, 'edit.html', {'task': task})
