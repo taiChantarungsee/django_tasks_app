@@ -17,11 +17,8 @@
             <td>{{task.title}}</td>
             <td>{{task.text}}</td>
             <td>
-                <form method="POST" class="post-form">{% csrf_token %}
-                  {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Save</button>
-                </form>
-                <button type="button" class="btn btn-primary">Primary</button>
+                <a class="btn btn-danger" name="delete" value="delete" href="{% url 'task_delete' pk=task.pk %}">Delete</a>
+                <a class="btn btn-default" name="delete" value="delete">Completed Checkbox</a>
                 <a class="btn btn-default" href="{% url 'task_edit' pk=task.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
         </tr>

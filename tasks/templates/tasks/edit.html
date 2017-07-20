@@ -1,1 +1,10 @@
-{% extends 'tasks/base.html'%}
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+<h1>Edit Task</h1>
+<form method="POST" class="post-form">{% csrf_token %}
+         <p><label for="id_title">Title:</label> <input id="id_title" maxlength="20" name="title" type="text" /></p><p><label for="id_text">Text:</label> <textarea cols="40" id="id_text" name="text" rows="10"></textarea></p><p><label for="id_user">User:</label> <input id="id_user" maxlength="20" name="user" type="text" /></p>
+        <button type="submit" class="save btn btn-default">Save</button>
+</form>
+
+{% endblock %}

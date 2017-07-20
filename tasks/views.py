@@ -1,12 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Task, User
-from .forms import TaskForm
+from .forms import TaskForm, DeleteTaskForm
 from django.shortcuts import redirect
 
 def task_list(request):
 	 # also need to add a gitignore and other files. Also integrate the forms demo project?
 	tasks = Task.objects.all()
-	print ("!!!!!!!!!!!!!!!!!!")
 	#if request.user is_authenticated():
 #		user_posts = Posts.objects.get('user'=request.user.username)
 #		posts = { 'posts': user_posts}
@@ -24,12 +23,29 @@ def task_list(request):
 
 def task_edit(request, pk):
 	task = get_object_or_404(Task, pk=pk)
+	print (request.POST.get('delete'))
+	if request.method == "POST" and request.POST.get('delete'):
+		task.delete()
+		return redirect('main') # use a switch statement here? Google best way to deal with a situation like this using boolean logic.
 	if request.method == "POST":
-		form = TaskForm(request.POST, instance=post)
+		form = TaskForm(request.POST, instance=task)
 		if form.is_valid():
 			task = form.save(commit=False)
 			task.save()
-			return redirect('task_edit')
+			return redirect('main')
 	else:
-		form = TaskForm(instance=post)
-	return render(request, 'edit.html', {'task': task})
+		form = TaskForm(instance=task)
+	return render(request, 'tasks/edit.html', {'task': task})
+
+def task_delete(request, pk): 
+	#This way of implementing delete is modular and keeps us safe from CSRF attacks.
+	task = get_object_or_404(Task, pk=pk)
+	if request.method == 'POST':
+		form = DeleteTaskForm(request.POST, instance=new_to_delete)
+		if form.is_valid():
+			new_to_delete.delete()
+	else:
+		form = DeleteTaskForm(instance=task)
+	tasks = Task.objects.all()
+	template_vars = {'tasks':tasks}
+	return render(request, 'tasks/main.html', template_vars)
