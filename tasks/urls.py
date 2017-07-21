@@ -7,5 +7,6 @@ urlpatterns = [
 	# and while I'm at it review the old code to get the django skills back up. Then all will be ready.
     url(r'^$', views.task_list, name='main'),
     url(r'^task/(?P<pk>\d+)/edit/$', views.task_edit, name='task_edit'),
-    url(r'^task/(?P<pk>\d+)/delete/$', views.task_delete, name='task_delete'),
+    url(r'^delete/(?P<pk>\d+)/$', views.TaskDelete.as_view(),
+        name='task_delete',),
 ]

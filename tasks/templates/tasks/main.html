@@ -17,12 +17,17 @@
             <td>{{task.title}}</td>
             <td>{{task.text}}</td>
             <td>
-                <a class="btn btn-danger" name="delete" value="delete" href="{% url 'task_delete' pk=task.pk %}">Delete</a>
-                <a class="btn btn-default" name="delete" value="delete">Completed Checkbox</a>
+                <a class="btn btn-danger" type="submit" href="{% url 'task_delete' pk=task.pk %}">Delete</a>
+                {% if contact.id %}
+                    <a href="{% url "contacts-delete" pk=contact.id %}">Delete</a>
+                {% endif %}
+                <a class="btn btn-default">Completed Checkbox</a>
                 <a class="btn btn-default" href="{% url 'task_edit' pk=task.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
         </tr>
         {%endfor%}
     </tbody>
 </table>
+
+{{tasks}}
 {% endblock %}

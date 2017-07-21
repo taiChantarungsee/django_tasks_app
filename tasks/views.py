@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
 from .models import Task, User
 from .forms import TaskForm, DeleteTaskForm
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render, get_object_or_404
+from django.views.generic.edit import DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 def task_list(request):
 	 # also need to add a gitignore and other files. Also integrate the forms demo project?
@@ -40,12 +41,24 @@ def task_edit(request, pk):
 def task_delete(request, pk): 
 	#This way of implementing delete is modular and keeps us safe from CSRF attacks.
 	task = get_object_or_404(Task, pk=pk)
+	print ("1")
 	if request.method == 'POST':
+		print ("2")
 		form = DeleteTaskForm(request.POST, instance=new_to_delete)
 		if form.is_valid():
-			new_to_delete.delete()
+			task.delete()
 	else:
+		print ("3")
 		form = DeleteTaskForm(instance=task)
+	print ("4")
 	tasks = Task.objects.all()
 	template_vars = {'tasks':tasks}
 	return render(request, 'tasks/main.html', template_vars)
+
+class TaskDelete(DeleteView):
+    model = Task
+    template_name = 'delete_task.html'
+    success_url = reverse_lazy('main')
+
+    def get_sucess_url(self):
+    	return success_url
