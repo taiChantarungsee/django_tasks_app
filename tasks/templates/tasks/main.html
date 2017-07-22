@@ -8,6 +8,8 @@
             <th>Task Name</th>
             <th>Notes</th>
             <th>Actions</th>
+            <th><a href="{% url 'task_add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></th>
+            <th><a href="{%url 'create_user'%}" class="top-menu">add user</span></a></th>
         </tr>
     </thead>
     <tbody>
@@ -18,9 +20,6 @@
             <td>{{task.text}}</td>
             <td>
                 <a class="btn btn-danger" type="submit" href="{% url 'task_delete' pk=task.pk %}">Delete</a>
-                {% if contact.id %}
-                    <a href="{% url "contacts-delete" pk=contact.id %}">Delete</a>
-                {% endif %}
                 <a class="btn btn-default">Completed Checkbox</a>
                 <a class="btn btn-default" href="{% url 'task_edit' pk=task.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
@@ -29,5 +28,4 @@
     </tbody>
 </table>
 
-{{tasks}}
 {% endblock %}
