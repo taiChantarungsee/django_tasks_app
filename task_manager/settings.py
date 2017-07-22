@@ -51,6 +51,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
+LOGIN_REDIRECT_URL = 'main'
+
 ROOT_URLCONF = 'task_manager.urls'
 
 TEMPLATES = [
