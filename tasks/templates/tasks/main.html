@@ -9,13 +9,13 @@
             <th>Notes</th>
             <th>Actions</th>
             <th><a href="{% url 'task_add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></th>
-            <th><a href="{%url 'create_user'%}" class="top-menu">add user</span></a></th>
+            <th><a href="{% url 'create_user' %}" class="top-menu">add user</span></a></th>
         </tr>
     </thead>
     <tbody>
         {% for task in tasks %}
         <tr>
-            <th scope="row">Put a template tag here</th>
+            <th scope="row">1</th>
             <td>{{task.title}}</td>
             <td>{{task.text}}</td>
             <td>
