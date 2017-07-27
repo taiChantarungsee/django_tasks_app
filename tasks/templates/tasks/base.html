@@ -14,7 +14,7 @@
 <div>
     Hello! Welcome to Tai's Blog! This page is a web app that's meant to function as a
     online taskmanager. This is an example to demonstrate my django skills. Right now you
-    are seeing all tasks. Log in to only see tasks belonging to a specific user. 
+    are seeing all tasks, log in to only see yours. Log in to only see tasks belonging to a specific user. 
     {% if not user.is_authenticated %}
     	<a href="{% url 'login' %}">Click here to log in</a>
     {% else %}

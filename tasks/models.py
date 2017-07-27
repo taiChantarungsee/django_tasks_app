@@ -8,7 +8,7 @@ class Task(models.Model):
 	title = models.CharField(max_length=20)
 	text = models.TextField(blank=True)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	status = models.NullBooleanField(null=True)
+	completed = models.NullBooleanField(null=True)
 	date_created = models.DateField(blank=True, null=True)
 	date_completed = models.DateField(blank=True, null=True)
 

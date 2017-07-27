@@ -37,6 +37,13 @@ def task_edit(request, pk):
 		form = TaskForm(instance=task)
 	return render(request, 'tasks/edit.html', {'task': task})
 
+def task_complete (request, pk):
+	completed_task = Task.objects.get(pk=pk)
+	completed_task.completed = True 
+	completed_task.save()
+	tasks = Task.objects.all()
+	return render(request, 'tasks/main.html', {'tasks': tasks})
+
 
 #This way of implementing delete is modular, brief, and keeps us safe from CSRF attacks.
 class DeleteTask(DeleteView):

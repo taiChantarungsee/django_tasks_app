@@ -1,6 +1,7 @@
 {% extends 'tasks/base.html' %}
 
 {% block content %}
+<p>
 <table class="table">
     <thead>
         <tr>
@@ -20,7 +21,11 @@
             <td>{{task.text}}</td>
             <td>
                 <a class="btn btn-danger" type="submit" href="{% url 'task_delete' pk=task.pk %}">Delete</a>
-                <a class="btn btn-default">Completed Checkbox</a>
+                {% if task.title %}
+                    This task has been completed :)
+                {% else %}
+                <a class="btn btn-primary" type="submit" href="{% url 'task_complete' pk=task.pk %}">Complete</a>
+                {% endif %}
                 <a class="btn btn-default" href="{% url 'task_edit' pk=task.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
         </tr>
