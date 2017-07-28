@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Task(models.Model):
 
-	number = models.IntegerField(null=True) #change into a uid? Also need to set this auto.
+	number = models.IntegerField(null=True)
 	title = models.CharField(max_length=20)
 	text = models.TextField(blank=True)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)

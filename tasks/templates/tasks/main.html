@@ -16,7 +16,7 @@
     <tbody>
         {% for task in tasks %}
         <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{task.pk}}</th>
             <td>{{task.title}}</td>
             <td>{{task.text}}</td>
             <td>
