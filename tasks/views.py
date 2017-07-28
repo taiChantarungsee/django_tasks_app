@@ -1,5 +1,5 @@
 from .models import Task, User
-from .forms import TaskForm, DeleteTaskForm
+from .forms import TaskForm
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic.edit import CreateView, DeleteView
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -7,26 +7,19 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
 def task_list(request):
-	 # also need to add a gitignore and other files. Also integrate the forms demo project?
 	if request.user.id:
 		user = request.user.id
 		tasks = Task.objects.filter(user=user)
 	else:
 		tasks = Task.objects.all()
-	#if request.user is_authenticated():
-#		user_posts = Posts.objects.get('user'=request.user.username)
-#		posts = { 'posts': user_posts}
-	#if so there will be a database entry with all his tasks...)
-
 	return render(request, 'tasks/main.html', {'tasks': tasks})
-	#{ 'posts': user_posts}
 
 def task_edit(request, pk):
 	task = get_object_or_404(Task, pk=pk)
 	print (request.POST.get('delete'))
 	if request.method == "POST" and request.POST.get('delete'):
 		task.delete()
-		return redirect('main') # use a switch statement here? Google best way to deal with a situation like this using boolean logic.
+		return redirect('main') 
 	if request.method == "POST":
 		form = TaskForm(request.POST, instance=task)
 		if form.is_valid():

@@ -1,7 +1,12 @@
 *.pyc
 *~
 __pycache__
-myenv
+bin
+local
+lib
+include
+re
+sys
 db.sqlite3
 /static
 .DS_Store
