@@ -7,12 +7,10 @@ class Task(models.Model):
 	number = models.IntegerField(null=True) #change into a uid? Also need to set this auto.
 	title = models.CharField(max_length=20)
 	text = models.TextField(blank=True)
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 	completed = models.NullBooleanField(null=True)
 	date_created = models.DateField(blank=True, null=True)
 	date_completed = models.DateField(blank=True, null=True)
 
 	def __str__(self):
 		return self.title
-
-#put lots of stuff in models and forms to show how I would deal with it.
