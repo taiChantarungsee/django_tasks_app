@@ -1,7 +1,7 @@
 import unittest
 from django.test import TestCase, Client
 from django.test.utils import setup_test_environment
-from . import views
+from .forms import TaskForm
 
 class ViewTests(TestCase):
 
@@ -29,3 +29,35 @@ class ViewTests(TestCase):
 
 		#response = c.get('task/1/edit')
 		#self.assertEqual(response.status_code, 200)
+
+	def test_add(self):
+
+		response = self.client.get('/add/')
+		self.assertEqual(response.status_code, 200)
+
+		#Add a task
+		response = self.client.post('/add/', {'title': 'test',})
+		self.assertEqual(response.status_code, 302)
+
+		#Add a task with an invalid title
+		response = self.client.post('/add/', {'name': 23,})
+		self.assertEqual(response.status_code, 200)
+
+
+	def test_complete(self):
+
+		#Test that we get the right response for a non-existent task
+		response = self.client.get('complete/44')
+		self.assertEqual(response.status_code, 404)
+
+class FormTests(TestCase):
+
+		def test_forms(self):
+			data = {'title': 'test', 'text': 'this is a test'}
+			form = TaskForm(data=data)
+			self.assertTrue(form.is_valid())
+
+			#now test the form with false field and then entry data
+			data = {'name': 'test', 'text': 'this is a test'}
+			form = TaskForm(data=data)
+			self.assertTrue(not form.is_valid())
