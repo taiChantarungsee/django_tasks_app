@@ -16,7 +16,6 @@ def task_list(request):
 
 def task_edit(request, pk):
 	task = get_object_or_404(Task, pk=pk)
-	print (request.POST.get('delete'))
 	if request.method == "POST" and request.POST.get('delete'):
 		task.delete()
 		return redirect('main') 

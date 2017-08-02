@@ -1,7 +1,9 @@
 import unittest
 from django.test import TestCase, Client
 from django.test.utils import setup_test_environment
+from django.template.loader import render_to_string
 from .forms import TaskForm
+from .models import Task
 
 class ViewTests(TestCase):
 
@@ -18,6 +20,8 @@ class ViewTests(TestCase):
 		self.assertEqual(response.status_code, 200)
 		self.assertContains(response, "Hello! Welcome to Tai's Blog!")
 		self.assertQuerysetEqual(response.context['tasks'], [])
+		with self.assertTemplateUsed(template_name='tasks/main.html'):
+			self.assertIn('Task Number', render_to_string('tasks/main.html'))
 
 	def test_authentication(self):
 
@@ -49,6 +53,15 @@ class ViewTests(TestCase):
 		#Test that we get the right response for a non-existent task
 		response = self.client.get('complete/44')
 		self.assertEqual(response.status_code, 404)
+
+
+class ModelTests(TestCase):
+
+		#do a basic model test
+		def test_data(self):
+			data = Task(title='test', text='this is a test')
+			self.assertTrue(data)
+
 
 class FormTests(TestCase):
 
