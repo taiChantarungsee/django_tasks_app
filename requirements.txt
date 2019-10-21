@@ -43,7 +43,7 @@ djangorestframework==3.4.7
 dnspython==1.12.0
 docutils==0.12
 duplicity==0.7.6
-ecdsa==0.13
+ecdsa==0.13.3
 email-reply-parser==0.3.0
 enum34==1.1.6
 Fabric==1.10.2
