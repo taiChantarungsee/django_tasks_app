@@ -19,7 +19,7 @@ defer==1.0.6
 diff-match-patch==20121119
 dirspec==13.10
 dj-database-url==0.4.2
-Django==1.8.15
+Django==1.11.29
 django-allauth==0.25.2
 django-betterforms==1.1.1
 django-bootstrap-form==3.2.1
