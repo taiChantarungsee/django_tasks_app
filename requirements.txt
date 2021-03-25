@@ -129,7 +129,7 @@ python-xlib==0.14
 pytz==2016.4
 PyWebDAV==0.9.8
 pyxdg==0.25
-PyYAML==3.11
+PyYAML==5.4
 reportlab==3.3.0
 repoze.lru==0.6
 requests==2.11.1
