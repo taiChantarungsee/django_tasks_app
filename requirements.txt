@@ -160,7 +160,7 @@ virtualenv-clone==0.2.5
 virtualenvwrapper==4.3.1
 vobject==0.8.1rc0
 waitress==1.0.1
-Werkzeug==0.10.4
+Werkzeug==0.15.3
 whitenoise==3.2.3
 xlwt==0.7.5
 zope.interface==4.1.3
