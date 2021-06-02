@@ -72,7 +72,7 @@ lockfile==0.12.2
 lxml==3.5.0
 Mako==1.0.3
 Markdown==2.6.6
-markdown2==2.3.1
+markdown2==2.4.0
 MarkupSafe==0.23
 mechanize==0.2.5
 mock==2.0.0
