@@ -130,7 +130,7 @@ pytz==2016.4
 PyWebDAV==0.9.8
 pyxdg==0.25
 PyYAML==3.11
-reportlab==3.3.0
+reportlab==3.5.55
 repoze.lru==0.6
 requests==2.11.1
 requests-oauthlib==0.6.1
