@@ -70,7 +70,7 @@ Kivy==1.9.1
 linecache2==1.0.0
 lockfile==0.12.2
 lxml==3.5.0
-Mako==1.0.3
+Mako==1.2.2
 Markdown==2.6.6
 markdown2==2.3.1
 MarkupSafe==0.23
